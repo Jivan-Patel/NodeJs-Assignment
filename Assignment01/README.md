@@ -1,25 +1,16 @@
-# Student CGPA API (Using In-Memory JSON Database)
+# Student API (Using In-Memory JSON Database)
 
 
 ## Objective
 
-This project is a REST API built using Express.js to manage student CGPA records stored in an in-memory JSON array.
+Build a REST API using Express.js that manages student CGPA records stored in an in-memory JSON array.
 
-The API:
-
-- Uses only GET routes  
-- Includes static and dynamic routes  
-- Follows REST principles  
-- Returns proper HTTP status codes  
-- Does not use any database  
-
----
-
-## Tech Stack
-
-- Node.js  
-- Express.js  
-- CORS  
+The application must:
+ 
+- Use only GET routes (for this assignment)
+- Include static routes and dynamic routes
+- Follow REST principles
+- Return proper HTTP status codes
 
 ---
 
