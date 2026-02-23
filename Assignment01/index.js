@@ -3,7 +3,7 @@ const cors = require("cors");
 
 const app = express();
 app.use(cors({
-    origin: "http://localhost:5173"
+  origin: "http://localhost:5173"
 }));
 app.use(express.json());
 const students = [
@@ -80,34 +80,40 @@ const students = [
 ];
 
 app.get("/", (req, res) => {
-    res.send("Express server is running...");
+  res.send("Express server is running...");
 });
 
 app.get("/students", (req, res) => {
-    res.status(200).json(students);
+  res.status(200).json(students);
 });
 app.get("/students/topper", (req, res) => {
-    let topper = students.reduce((max,student) => (max.cgpa < student.cgpa) ? student : max,students[0]);
-    res.status(200).json(topper);
+  let topper = students.reduce((max, student) => (max.cgpa < student.cgpa) ? student : max, students[0]);
+  res.status(200).json(topper);
 });
 app.get("/students/average", (req, res) => {
-    let avg = (students.reduce((sum,student) => sum + student.cgpa,0) / students.length).toFixed(2);
-    res.status(200).json({ averageCGPA: avg });
+  let avg = (students.reduce((sum, student) => sum + student.cgpa, 0) / students.length).toFixed(2);
+  res.status(200).json({ averageCGPA: avg });
 });
 app.get("/students/count", (req, res) => {
-    res.status(200).json({ totalStudents: students.length });
+  res.status(200).json({ totalStudents: students.length });
 });
 app.get("/students/:id", (req, res) => {
-    const id = Number(req.params.id);
-    let student = students.find(stu => stu.id === id);
-    res.status(200).json(student);
+  const id = Number(req.params.id);
+  let student = students.find(stu => stu.id === id);
+  if (!student) {
+    return res.status(404).json({ message: "Student not found" });
+  }
+  res.status(200).json(student);
 });
 app.get("/students/branch/:branchName", (req, res) => {
-    const branchName = req.params.branchName.toLowerCase();
-    let student = students.filter(stu => stu.branch.toLowerCase() == branchName);
-    res.status(200).json(student);
+  const branchName = req.params.branchName.toLowerCase();
+  let student = students.filter(stu => stu.branch.toLowerCase() == branchName);
+  if (!student) {
+    return res.status(404).json({ message: "Student not found" });
+  }
+  res.status(200).json(student);
 });
 
 app.listen(3000, () => {
-    console.log("Server started on port 3000");
+  console.log("Server started on port 3000");
 });
