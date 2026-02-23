@@ -92,10 +92,10 @@ app.get("/students/topper", (req, res) => {
 });
 app.get("/students/average", (req, res) => {
     let avg = (students.reduce((sum,student) => sum + student.cgpa,0) / students.length).toFixed(2);
-    res.status(200).json(avg);
+    res.status(200).json({ averageCGPA: avg });
 });
 app.get("/students/count", (req, res) => {
-    res.status(200).json(students.length);
+    res.status(200).json({ totalStudents: students.length });
 });
 app.get("/students/:id", (req, res) => {
     const id = Number(req.params.id);
