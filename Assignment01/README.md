@@ -1,0 +1,183 @@
+# Student CGPA API (Using In-Memory JSON Database)
+
+
+## Objective
+
+This project is a REST API built using Express.js to manage student CGPA records stored in an in-memory JSON array.
+
+The API:
+
+- Uses only GET routes  
+- Includes static and dynamic routes  
+- Follows REST principles  
+- Returns proper HTTP status codes  
+- Does not use any database  
+
+---
+
+## Tech Stack
+
+- Node.js  
+- Express.js  
+- CORS  
+
+---
+
+## Student Record Structure
+
+Each student record contains:
+
+```js
+{
+  id: 1,
+  name: "Aditya",
+  branch: "CSE",
+  semester: 6,
+  cgpa: 8.4
+}
+```
+
+The project contains 10 student records stored inside the `students` array in `index.js`.
+
+---
+
+# Implemented Routes
+
+## 1. GET /
+
+Checks if server is running.
+
+Response:
+
+```
+Express server is running...
+```
+
+Status Code: 200
+
+---
+
+## 2. GET /students
+
+Returns all students.
+
+- Status Code: 200  
+- Returns full JSON array  
+
+---
+
+## 3. GET /students/topper
+
+Returns the student with the highest CGPA.
+
+- Status Code: 200  
+- Returns one student object  
+
+---
+
+## 4. GET /students/average
+
+Returns the average CGPA of all students.
+
+Response format:
+
+```json
+{
+  "averageCGPA": "8.09"
+}
+```
+
+(Note: Value is returned as a string because `toFixed(2)` is used.)
+
+Status Code: 200
+
+---
+
+## 5. GET /students/count
+
+Returns total number of students.
+
+Response:
+
+```json
+{
+  "totalStudents": 10
+}
+```
+
+Status Code: 200
+
+---
+
+## 6. GET /students/:id
+
+Returns student by ID.
+
+Example:
+
+```
+GET /students/3
+```
+
+- If student exists → 200  
+- If not found → 404  
+
+Error Response:
+
+```json
+{
+  "message": "Student not found"
+}
+```
+
+---
+
+## 7. GET /students/branch/:branchName
+
+Returns all students from a specific branch (case-insensitive).
+
+Example:
+
+```
+GET /students/branch/CSE
+```
+
+- Status Code: 200  
+- Returns array of matching students  
+- If no students found → returns empty array  
+
+---
+
+# Steps to Run Locally
+
+1. Clone the repository  
+2. Run `npm install`  
+3. Start server using:
+
+```
+node index.js
+```
+
+4. Server runs on:
+
+```
+http://localhost:3000
+```
+
+---
+
+# GitHub Repository
+
+https://github.com/Jivan-Patel/NodeJs-Assignment/tree/main/Assignment01
+
+---
+
+# Postman Documentation
+
+https://documenter.getpostman.com/view/50840833/2sBXcEmg8H
+
+---
+
+# Render Deployment
+
+https://nodejs-assignment-0gg6.onrender.com/
