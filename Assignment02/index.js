@@ -51,8 +51,6 @@ app.get("/", (req, res) => {
   res.send("Express server is running");
 });
 
-/////// GET REQUESTS ///////
-
 app.get("/products", (req, res) => {
   res.json(products);
 });
@@ -86,8 +84,6 @@ app.get("/products/category/:categoryName", (req, res) => {
     res.json(product);
 });
 
-/////// POST REQUESTS ///////
-
 app.post("/products", (req, res) => {
   const newProduct = {
     id: products.length + 1,
@@ -103,8 +99,6 @@ app.post("/products", (req, res) => {
     product : newProduct
   });
 });
-
-/////// PUT REQUESTS ///////
 
 app.put("/product/:id", (req, res) => {
   const productId = Number(req.params.id);
