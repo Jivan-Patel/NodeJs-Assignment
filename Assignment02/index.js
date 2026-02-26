@@ -116,6 +116,7 @@ app.put("/product/:id", (req, res) => {
 
   products[index] = {
     id: productId,
+    name: req.body.name,
     category : req.body.category,
     price : req.body.price,
     rating : req.body.rating

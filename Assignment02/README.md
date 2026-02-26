@@ -249,3 +249,19 @@ http://localhost:3000
 - Any REST client  
 
 ---
+
+# GitHub Repository
+
+https://github.com/Jivan-Patel/NodeJs-Assignment/tree/main/Assignment02
+
+---
+
+# Postman Documentation
+
+https://documenter.getpostman.com/view/50840833/2sBXcGFLEQ
+
+---
+
+# Render Deployment
+
+https://nodejs-assignment-1-s12s.onrender.com
