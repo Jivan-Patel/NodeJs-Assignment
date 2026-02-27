@@ -68,7 +68,7 @@ app.get("/state/highest-gdp", (req, res) => {
 
 app.post("/states", (req, res) => {
     const state = {
-        "id": states.length,
+        "id": states[states.length - 1].id + 1,
         "name": req.body.name,
         "population": req.body.population,
         "literacyRate": req.body.literacyRate,
@@ -101,7 +101,7 @@ app.put("/states/:id", (req, res) => {
         "gdp": req.body.gdp
     };
     states[i] = state;
-    res.status(201).json(states[i]);
+    res.status(200).json(states[i]);
 });
 
 app.put("/states/:id/budget", (req, res) => {
@@ -111,7 +111,7 @@ app.put("/states/:id/budget", (req, res) => {
         return res.status(404).json({ "error": "Invalid id" });
     }
     states[i].annualBudget = req.body.annualBudget;
-    res.status(201).json(states[i]);
+    res.status(200).json(states[i]);
 });
 
 app.put("/states/:id/population", (req, res) => {
@@ -121,7 +121,7 @@ app.put("/states/:id/population", (req, res) => {
         return res.status(404).json({ "error": "Invalid id" });
     }
     states[i].population = req.body.population;
-    res.status(201).json(states[i]);
+    res.status(200).json(states[i]);
 });
 
 
@@ -134,7 +134,7 @@ app.patch("/states/:id/literacy", (req, res) => {
         return res.status(404).json({ "error": "Invalid id" });
     }
     states[i].literacyRate = req.body.literacyRate;
-    res.status(201).json(states[i]);
+    res.status(200).json(states[i]);
 });
 
 app.patch("/states/:id/gdp", (req, res) => {
@@ -144,7 +144,7 @@ app.patch("/states/:id/gdp", (req, res) => {
         return res.status(404).json({ "error": "Invalid id" });
     }
     states[i].gdp = req.body.gdp;
-    res.status(201).json(states[i]);
+    res.status(200).json(states[i]);
 });
 
 app.patch("/states/:id", (req, res) => {
@@ -154,11 +154,11 @@ app.patch("/states/:id", (req, res) => {
         return res.status(404).json({ "error": "Invalid id" });
     }
     for(let field in states[i]) {
-        if(req.body[field]) {
+        if(req.body[field] != undefined) {
             states[i][field] = req.body[field];
         }
     }
-    res.status(201).json(states[i]);
+    res.status(200).json(states[i]);
 });
 
 
@@ -172,7 +172,7 @@ app.delete("/states/:id", (req, res) => {
         return res.status(404).json({ "error": "Invalid id" });
     }
     const state = states.splice(i, 1);
-    res.status(204).json({"state": state});
+    res.status(204).send();
 });
 
 app.delete("/states/name/:stateName", (req, res) => {
@@ -182,14 +182,14 @@ app.delete("/states/name/:stateName", (req, res) => {
         return res.status(404).json({ "error": "Invalid id" });
     }
     const state = states.splice(i, 1);
-    res.status(204).json({"state": state});
+    res.status(200).json({"state": state});
 });
 
 app.delete("/states/low-literacy/:percentage", (req, res) => {
     const percentage = Number(req.params.percentage);
     const count = states.length;
     states = states.filter(state => state.literacyRate >= percentage);
-    res.status(202).json({"deletedCount": count - states.length});
+    res.status(200).json({"deletedCount": count - states.length});
 });
 
 
